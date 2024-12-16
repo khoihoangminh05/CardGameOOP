@@ -96,8 +96,8 @@ public class Table {
 
 	    private Color color1 = Color.decode("#0099F7");
 	    private Color color2 = Color.decode("#F11712");
-	    private final Timer timer;
-	    private final Timer timerPressed;
+	    private final Timer timer ;
+	    private final Timer timerPressed ;
 	    private float alpha = 0.3f;
 	    private boolean mouseOver;
 	    private boolean pressed;
@@ -107,8 +107,8 @@ public class Table {
 	    private float alphaPressed = 0.5f;
 
 	    public ButtonGradient() {
-	        setContentAreaFilled(false);
-	        setForeground(Color.WHITE);
+			setContentAreaFilled(false);
+	        setForeground(Color.GREEN);
 	        setCursor(new Cursor(Cursor.HAND_CURSOR));
 	        setBorder(new EmptyBorder(10, 20, 10, 20));
 	        addMouseListener(new MouseAdapter() {
@@ -174,6 +174,7 @@ public class Table {
 
 	    @Override
 	    protected void paintComponent(Graphics grphcs) {
+	  
 	        int width = getWidth();
 	        int height = getHeight();
 	        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -191,6 +192,7 @@ public class Table {
 	        g2.dispose();
 	        grphcs.drawImage(img, 0, 0, null);
 	        super.paintComponent(grphcs);
+	        
 	    }
 
 	    private void createStyle(Graphics2D g2) {
@@ -369,7 +371,7 @@ public class Table {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("Tien Len");
-		frame.getContentPane().setBackground(new Color(25, 115, 25));
+		frame.getContentPane().setBackground(new Color(25, 115, 125));
 		
 		
 		
@@ -386,8 +388,8 @@ public class Table {
 		
 		message = new JPanel()
 		{
-	 protected void paintComponent(Graphics g) {
-		 super.paintComponent(g);
+	        protected void paintComponent(Graphics g) {
+		     super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -474,6 +476,7 @@ public class Table {
 		});
 
 		chatButton.setIcon(new ImageIcon("src/buttons/CHAT.png"));
+		//chatButton.setText("Chat");
 		chatButton.setBounds(43, 29, 48, 48);
 		tienLenPanel.setLayout(null);
 		tienLenPanel.add(chatButton);
@@ -503,8 +506,8 @@ public class Table {
 		tienLenPanel.add(passButton);
 		message.setVisible(false);
 
-
-		frame.add(tienLenPanel);
+        frame.setContentPane(tienLenPanel);
+		//frame.add(tienLenPanel);
 			}
 	
 public Client getGame() {
@@ -534,6 +537,7 @@ public Client getGame() {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 			
 			int[] playerOrder = new int[4];

@@ -3,11 +3,10 @@ package card;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class CardList implements Serializable {
 	private static final long serialVersionUID = -3711761437629470849L;
 	private ArrayList<Card> cards = new ArrayList<Card>();
-
+    
 // thêm lá bài vào list bài
 	public void addCard(Card card) {
 		if (card != null) {

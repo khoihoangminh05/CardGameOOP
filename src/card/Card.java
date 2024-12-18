@@ -14,7 +14,6 @@ public class Card implements Comparable<Card>, Serializable {
 		this.suit = suit;
 		this.rank = rank;
 	}
-
 	public int getSuit() {
 		return suit;
 	}

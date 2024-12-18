@@ -188,7 +188,7 @@ public class TienLenGame extends JFrame{
         }
 
         for (int i = numberOfPlayers - numberOfBots; i < numberOfPlayers; i++) {
-           clients[i] = new BotGame(numberOfPlayers);
+           clients[i] = new TienLenBot(numberOfPlayers);
         }
 	}
 	    

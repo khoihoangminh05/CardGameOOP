@@ -19,9 +19,6 @@ public class Message extends GameMessage {
 	
 	public static final int MSG = 7;
 	
-	public static final int YOUR_TURN = 8;
-	
-	public static final int FIRST = 9;
 
 	public Message(int type, int playerID, Object data) {
 		super(type, playerID, data);

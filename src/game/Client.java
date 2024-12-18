@@ -340,52 +340,9 @@ public class Client implements CardGameClient , Network
 		return isBot;
 	}
 
-	public void start(Deck deck) {
-		
+	public void start(Deck deck) {	
 		this.deck = deck;
 		
-		for (int i = 0; i <numOfPlayers; i++)
-		{
-			playerList.get(i).removeAllCards();
-		}
-		
-		for (int i = 0; i < numOfPlayers; i++)
-		{
-			for (int j = 0; j < 13; j++)
-			{
-				getPlayerList().get(i).addCard(this.deck.getCard(i*13+j));
-			}
-		}
-		
-		for (int i = 0; i < numOfPlayers; i++)
-		{
-			getPlayerList().get(i).getCardsInHand().sort();
-		}
-		
-		minCard = null;
- 		
- 		for (int i = 0; i < numOfPlayers; i++)
- 		{
- 			for(int j = 0; j < playerList.get(i).getCardsInHand().size(); j++) {
- 				Card card = playerList.get(i).getCardsInHand().getCard(j);
- 				if(minCard == null) {
- 					setMinCard(card);
- 					currentIdx = i;
- 				} 
- 				else if(card.compareTo(getMinCard()) == -1) {
- 					currentIdx = i;
- 					setMinCard(card);
- 				}
- 			}
- 		}		
-		this.sendMessage(new Message(Message.FIRST, this.playerID, currentIdx));
-		table.repaint();
-		table.setActivePlayer(playerID);
-		if(isBot) {
- 			if(playerID == currentIdx) {
- 				makeMoveAutomatically();
- 			}
-		}
 	}
 
 	

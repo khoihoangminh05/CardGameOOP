@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.AlphaComposite;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -45,7 +46,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
 
 import tienlen.TienLenDeck;
-import game.BotGame;
 //import game.Bot;
 import game.Client;
 import handmodel.Hand;
@@ -943,7 +943,7 @@ public Client getGame() {
 
 	public void repaint()
 	{
-		if(game instanceof BotGame)
+		if(game.getIsBot() == true)
 		{
 			frame.setVisible(false);
 		}

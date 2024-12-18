@@ -93,8 +93,7 @@ public class Server {
         }
     }
 
-    private synchronized void parseMessage(Socket clientSocket,
-                                           Message message) {
+    private synchronized void parseMessage(Socket clientSocket, Message message) {
         for (int i = 0; i < maxNumOfPlayers; i++) {
             if (clientSockets[i] == clientSocket) {
                 message.setPlayerID(i);
@@ -114,25 +113,12 @@ public class Server {
                         + clientSocket.getRemoteSocketAddress());
                 broadcastMessage(message);
 
-                // Sau khi nhận MOVE từ currentPlayer, xác định người chơi tiếp theo
-                currentPlayer = getNextPlayer(currentPlayer);
-                System.out.print(currentPlayer);
-
-                // Gửi YOUR_TURN tới người chơi tiếp theo
-                broadcastMessage(new Message(Message.YOUR_TURN, currentPlayer, null));
-                println("Gửi YOUR_TURN tới người chơi " + currentPlayer);
                 break;
             case Message.MSG:
                 println("Broadcasts a user message from "
                         + clientSocket.getRemoteSocketAddress());
                 broadcastUserMessage(clientSocket, (String) message.getData());
                 break;
-            case Message.FIRST:
-            	 int startingPlayer = (int) message.getData();
-            	    currentPlayer = startingPlayer;
-            	    broadcastMessage(new Message(Message.YOUR_TURN, currentPlayer, null));
-            	    println("Starting player set to: " + currentPlayer);
-            	    break;
             default:
                 println("Wrong message type: " + message.getType());
                 break;
@@ -269,20 +255,12 @@ public class Server {
         return (currentPlayer + 1) % maxNumOfPlayers;
     }
 
-    private synchronized void startGame(Socket clientSocket) {
-        Deck deck = createDeck();
-        deck.shuffle();
-        println("Tất cả người chơi đã sẵn sàng, bắt đầu game");
-        broadcastMessage(new Message(Message.START, -1,
-                deck));
-    }
 
     public Deck createDeck() {
         return new Deck();
     }
 
-    private synchronized void broadcastUserMessage(Socket clientSocket,
-                                                   String msg) {
+    private synchronized void broadcastUserMessage(Socket clientSocket, String msg) {
         if (numOfPlayers > 0) {
             for (int i = 0; i < maxNumOfPlayers; i++) {
                 if (clientSockets[i] == clientSocket) {
@@ -370,16 +348,5 @@ public class Server {
         }
     }
 
-    private class ClearMenuItemListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            textArea.setText("");
-        }
-    }
-
-    private class QuitMenuItemListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            frame.dispose();
-            System.exit(0);
-        }
-    }
+    
 }

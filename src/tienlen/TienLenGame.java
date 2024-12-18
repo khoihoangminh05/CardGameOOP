@@ -1,6 +1,7 @@
 package tienlen;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import game.BotGame;
 import game.Client;
 import samloc.SamLocGame;
 
